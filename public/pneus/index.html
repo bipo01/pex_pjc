@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gerador de Requisição de Pneus em PDF</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+	</head>
+	<body>
+		<div class="formatar-doc">
+			<input type="text" name="nomeMotorista" id="nomeMotorista" placeholder="Nome do motorista" />
+			<input type="number" name="matricula" id="matricula" placeholder="Matrícula funcional" />
+			<input type="text" name="placa" id="placa" placeholder="Placa da viatura" />
+			<input type="text" name="modelo" id="modelo" placeholder="Modelo" />
+			<input type="text" name="unidade" id="unidade" placeholder="Unidade da Viatura" />
+			<input type="text" name="qtdPneus" id="qtdPneus" placeholder="Quantidade de Pneus" />
+			<input type="date" name="dataRetirada" id="dataRetirada" placeholder="Data de Retirada" />
+			<!-- <div class="input-wrapper">
+				<label for="r14">Aro 14</label>
+				<input type="radio" name="aro" value="r14" id="r14" />
+			</div> -->
+			<div class="input-wrapper">
+				<label for="r15">Aro 15</label>
+				<input type="radio" name="aro" value="r15" id="r15" />
+			</div>
+			<div class="input-wrapper">
+				<label for="r16">Aro 16</label>
+				<input type="radio" name="aro" value="r16" id="r16" />
+			</div>
+			<!-- <div class="input-wrapper">
+				<label for="r17">Aro 17</label>
+				<input type="radio" name="aro" value="r17" id="r17" />
+			</div> -->
+			<div class="input-wrapper">
+				<label for="r17,5">Aro 17,5</label>
+				<input type="radio" name="aro" value="r17,5" id="r17,5" />
+			</div>
+			<!-- <div class="input-wrapper">
+				<label for="r18">Aro 18</label>
+				<input type="radio" name="aro" value="r18" id="r18" />
+			</div> -->
+			<div class="input-wrapper">
+				<label for="r22,5">Aro 22,5</label>
+				<input type="radio" name="aro" value="r22,5" id="r22,5" />
+			</div>
+			<button id="gerarPDF" onclick="gerarPDF()">Gerar PDF</button>
+		</div>
+		<div id="documento-container" style="text-align: center">
+			<div id="documento">
+				<div>
+					<div class="header-top">
+						<img id="logo" src="logo.png" />
+						<p class="header-gov">Governo do Estado de Mato Grosso</p>
+						<p class="header-gov">SESP - Secretaria de Estado de Segurança Pública</p>
+						<div contenteditable="true" class="header-title">REQUISIÇÃO DE PNEUS № XXX/CALO/GTT/2025</div>
+					</div>
+				</div>
+
+				<table class="tabela-linha">
+					<tr>
+						<td class="col-label w-250"><strong id="col-contrato"></strong></td>
+						<td id="col-fornecedora" class="col-valor" contenteditable="true"></td>
+					</tr>
+				</table>
+
+				<table class="tabela-linha">
+					<tr>
+						<td rowspan="2" class="col-label w-150">Unidade Demandante</td>
+						<td id="unidadeField" class="col-valor w50-menos150" contenteditable="true"></td>
+					</tr>
+					<tr>
+						<td class="col-valor w50" contenteditable="true"><span id="placaField" contenteditable="true"></span> - <span id="modeloField" contenteditable="true"></span></td>
+					</tr>
+				</table>
+
+				<table class="tabela-pneus">
+					<tr class="header-row">
+						<td class="col-item">ITEM</td>
+						<td class="col-qtde">Qtde</td>
+						<td class="col-desc">Descrição do Item</td>
+					</tr>
+
+					<tr>
+						<td class="col-item" style="text-align: center" contenteditable="true"></td>
+						<td id="qtdPneusField" class="col-qtde" style="text-align: center" contenteditable="true"></td>
+						<td id="col-desc" class="col-desc" contenteditable="true"></td>
+					</tr>
+				</table>
+
+				<table class="tabela-endereco">
+					<tr>
+						<td class="endereco-label">Endereço para Retirada</td>
+						<td class="endereco-value" contenteditable="true"></td>
+					</tr>
+				</table>
+
+				<p class="texto-solicitacao">Solicito que seja entregue ao servidor IPC - <strong id="nomeMotoristaField"></strong> Matrícula Funcional <strong id="matriculaField"></strong>, a quantidade e descrição de pneus especificada na planilha acima.</p>
+
+				<div class="assinaturas-area">
+					<div class="bloco-uso-exclusivo">
+						<div class="uso-title">USO EXCLUSIVO DO FORNECEDOR</div>
+
+						<p style="margin: 0; padding: 0 0 5px 0">ENTREGUE EM:</p>
+						<div class="uso-field"></div>
+
+						<p style="margin: 0; padding: 10px 0 5px 0">CPF</p>
+						<div class="uso-field"></div>
+
+						<p style="margin: 0; padding: 10px 0 5px 0">Nome por extenso</p>
+						<div class="uso-field"></div>
+					</div>
+
+					<div class="bloco-autorizacao">
+						<div class="data-emissao">Cuiabá - MT, <span id="dataRetiradaField"></span>.</div>
+
+						<div class="autorizado-title">AUTORIZADO POR:</div>
+						<div class="bloco-assinatura" style="height: 40px">
+							<p>Gerência de Transporte e Tarifas</p>
+							<p>PJC/DAS/CALO/GTT</p>
+						</div>
+					</div>
+
+					<div class="recebido-area">
+						<div class="recebido-title">RECEBIDO POR:</div>
+						<div class="bloco-assinatura" style="height: 40px">
+							<p>CPF: ---</p>
+							<p>MAT: ---</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-gov">
+					Rua Júlio Domingos de Campos, s/nº Centro Politico Administrativo CEP: 78.049-923 Cuiabá Mato Grosso
+					<span style="font-weight: bold; margin-left: 20px">mt.gov.br</span>
+				</div>
+			</div>
+		</div>
+
+		<a href="/" class="home-btn" title="Voltar para o início">
+			<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M3 9.5L12 4l9 5.5v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4H9v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z" />
+			</svg>
+		</a>
+
+		<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+		<script src="script.js"></script>
+	</body>
+</html>

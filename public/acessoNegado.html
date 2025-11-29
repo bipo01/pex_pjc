@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Acesso Negado</title>
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Inter", Arial, sans-serif;
+				background: #f3f4f6;
+				color: #111827;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container {
+				background: white;
+				padding: 40px 50px;
+				border-radius: 12px;
+				box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+				text-align: center;
+				max-width: 400px;
+				width: 90%;
+				border-top: 5px solid #b91c1c; /* vermelho institucional */
+			}
+
+			h1 {
+				font-size: 22px;
+				color: #b91c1c;
+				margin-bottom: 15px;
+				font-weight: 700;
+			}
+
+			p {
+				font-size: 15px;
+				color: #4b5563;
+				margin-bottom: 30px;
+			}
+
+			a {
+				display: inline-block;
+				padding: 12px 20px;
+				background: #1f2937;
+				color: white;
+				text-decoration: none;
+				border-radius: 6px;
+				font-size: 15px;
+				font-weight: 500;
+				transition: 0.2s ease;
+			}
+
+			a:hover {
+				background: #111827;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Acesso negado</h1>
+			<p>Usuário ou senha inválidos. Verifique suas credenciais e tente novamente.</p>
+			<a href="/login">Voltar ao Login</a>
+		</div>
+	</body>
+</html>

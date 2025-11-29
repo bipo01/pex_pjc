@@ -1,0 +1,303 @@
+/* ================================
+   ESTILO GERAL
+================================ */
+body {
+	font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f3f4f6;
+	margin: 0;
+	padding: 20px 0;
+	color: #1f2937;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	line-height: 1.6;
+}
+
+/* Containers centrais */
+form,
+#table1,
+#table2,
+#table4 {
+	width: 95%;
+	max-width: 1200px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+	margin-bottom: 32px;
+}
+
+/* ================================
+   DROPZONE
+================================ */
+form {
+	padding: 28px;
+	border: 1px solid #e5e7eb;
+}
+
+#dropzone {
+	border: 2px dashed #9ca3af;
+	border-radius: 10px;
+	padding: 40px 20px;
+	background: #f9fafb;
+	transition: 0.25s ease;
+	text-align: center;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#dropzone p {
+	margin: 0;
+	font-size: 1rem;
+	color: #4b5563;
+	font-weight: 500;
+}
+
+#dropzone.dragover {
+	border-color: #2563eb;
+	background-color: #eef6ff;
+}
+
+/* Oculta input */
+#file {
+	display: none;
+}
+
+/* ================================
+   TABELA GERAL (Relatório 1)
+================================ */
+#table1 {
+	border-collapse: collapse;
+	overflow: hidden;
+}
+
+#table1 td {
+	padding: 18px 20px;
+	border-bottom: 1px solid #e5e7eb;
+	font-size: 1rem;
+	color: #374151;
+}
+
+#table1 tr:nth-child(even) {
+	background: #f8fafc;
+}
+
+#table1 h1 {
+	font-size: 1.1rem;
+	margin: 0;
+	font-weight: 600;
+}
+
+#table1 tr:first-child {
+	background: #e0f2fe;
+}
+
+#table1 tr:first-child td:last-child {
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: #0369a1;
+}
+
+/* Registros duplicados */
+#table1 tr td[colspan="2"] {
+	background: #fee2e2;
+	text-align: center;
+}
+
+#table1 tr td[colspan="2"] h1 {
+	color: #b91c1c;
+}
+
+/* ================================
+   ABAS
+================================ */
+.abas {
+	display: flex;
+	justify-content: center;
+	gap: 0;
+	margin-bottom: 20px;
+	background: #e5e7eb;
+	padding: 4px;
+	border-radius: 8px;
+}
+
+.aba {
+	background: transparent;
+	border: none;
+	padding: 10px 22px;
+	font-weight: 600;
+	cursor: pointer;
+	color: #374151;
+	border-radius: 6px;
+	transition: 0.25s;
+}
+
+.aba:hover:not(.selected) {
+	background: #d1d5db;
+}
+
+.aba.selected {
+	background: #2563eb;
+	color: white;
+	box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+/* ================================
+   TABELA 2 E 4 (detalhamento)
+================================ */
+#table2,
+#table4 {
+	border-collapse: collapse;
+	font-size: 0.95rem;
+	overflow: hidden;
+}
+
+#table2 thead,
+#table4 thead {
+	background: #1f2937;
+	color: white;
+}
+
+#table2 th,
+#table4 th {
+	padding: 14px;
+	border-bottom: 1px solid #374151;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+#table2 td,
+#table4 td {
+	padding: 12px;
+	border-bottom: 1px solid #e5e7eb;
+	color: #374151;
+}
+
+#table2 tbody tr:nth-child(even),
+#table4 tbody tr:nth-child(even) {
+	background: #f8fafc;
+}
+
+#table2 tbody tr:hover,
+#table4 tbody tr:hover {
+	background: #eef2ff;
+}
+
+/* Indicadores ASC/DEC */
+.ordered.asc {
+	background: #22c55e !important;
+	color: white !important;
+}
+
+.ordered.dec {
+	background: #dc2626 !important;
+	color: white !important;
+}
+
+/* Placas */
+#table2 td:nth-child(2),
+#table4 td:nth-child(2) {
+	font-weight: 600;
+	color: #1d4ed8;
+}
+
+/* ================================
+   GRÁFICO
+================================ */
+#myChart {
+	margin-top: 32px;
+	padding: 10px;
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ================================
+   SEARCH BAR
+================================ */
+.searchBar {
+	width: 95%;
+	max-width: 1200px;
+	margin-top: -10px;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.searchBar input {
+	width: 35%;
+	padding: 10px 14px;
+	border-radius: 6px;
+	border: 1px solid #9ca3af;
+	font-size: 0.95rem;
+	color: #374151;
+}
+
+#totalRows {
+	font-size: 0.9rem;
+	color: #6b7280;
+}
+
+/* ================================
+   SETAS FIXAS
+================================ */
+.setas {
+	position: fixed;
+	bottom: 2%;
+	right: 1.5%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.setas svg {
+	color: #374151;
+	transition: 0.25s ease;
+}
+
+.setas svg:hover {
+	color: #111827;
+	transform: scale(1.1);
+}
+
+/* ================================
+   FOOTER PROFISSIONAL
+================================ */
+footer {
+	opacity: 0;
+	margin-top: 30px;
+	padding: 12px 0;
+	font-size: 0.9rem;
+	color: #6b7280;
+	text-align: center;
+}
+
+/* ================================
+   UTILITÁRIOS
+================================ */
+.hidden {
+	display: none !important;
+}
+
+.home-btn {
+	position: fixed;
+	bottom: 2%;
+	left: 1.5%;
+	background: #1f2937;
+	padding: 12px;
+	border-radius: 50%;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: 0.25s ease;
+}
+
+.home-btn:hover {
+	background: #111827;
+	transform: scale(1.08);
+}
